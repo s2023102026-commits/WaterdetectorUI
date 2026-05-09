@@ -139,6 +139,12 @@ function App() {
   };
 
   const connectBluetooth = async () => {
+    if (!navigator.bluetooth) {
+      alert("Web Bluetooth is not supported on this browser/device.\n\n1. If you are on an iPhone/iPad, Apple blocks this. You must use the 'WebBLE' app from the App Store.\n2. Make sure you are using Google Chrome on Android.\n3. Ensure the URL starts with https://");
+      addLog('Bluetooth API missing (Not supported or HTTP instead of HTTPS)', 'alert');
+      return;
+    }
+    
     try {
       const dev = await navigator.bluetooth.requestDevice({
         filters: [{ services: [SERVICE_UUID] }]
