@@ -30,10 +30,22 @@ To solve this, use an external power supply circuit:
 
 ## 2️⃣ Uploading the Firmware (ESP32)
 
-1. Open the Arduino IDE.
-2. Go to **Tools -> Manage Libraries** and ensure the `ESP32Servo` library by Kevin Harrington is installed.
-3. Open the `esp32_firmware/esp32_firmware.ino` file.
-4. Go to **Tools -> Board** and select **"ESP32 Dev Module"**, then select your COM Port.
+### Install Dependencies in Arduino IDE
+To run the `esp32_firmware.ino` file, you will need to set up the ESP32 Board Support and download the Servo library.
+
+1. **Install ESP32 Board Support**:
+   - Go to **File > Preferences**.
+   - In **"Additional Boards Manager URLs"**, paste: `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`
+   - Go to **Tools > Board > Boards Manager...**, search for **"esp32"** and install the one by **Espressif Systems**.
+2. **Install the `ESP32Servo` Library**:
+   - Go to **Sketch > Include Library > Manage Libraries...**
+   - Search for **"ESP32Servo"** and install the library by **Kevin Harrington, John K. Bennett**.
+
+### Flashing the Code
+1. Open the `esp32_firmware/esp32_firmware.ino` file in Arduino IDE.
+2. Plug your ESP32 into your computer.
+3. Go to **Tools > Board > esp32** and select your specific board (e.g. **"DOIT ESP32 DEVKIT V1"** or **"ESP32 Dev Module"**).
+4. Go to **Tools > Port** and select your COM Port.
 5. Click **Upload**.
 
 ---
