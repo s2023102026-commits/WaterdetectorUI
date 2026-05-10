@@ -13,11 +13,18 @@ Ensure your components are wired exactly as follows to prevent PWM timer conflic
 | **Ultrasonic Trig Pin** | `GPIO 5` | |
 | **Ultrasonic Echo Pin** | `GPIO 18` | |
 | **Active Buzzer** | `GPIO 19` | Do NOT use a passive buzzer requiring PWM/Tone |
-| **Servo 1 (Left Gate)** | `GPIO 21` | Must be powered by an external 5V source |
-| **Servo 2 (Right Gate)**| `GPIO 22` | Must be powered by an external 5V source |
-| **Ground (GND)** | `GND` | The ESP32 and external 5V source **must share a common ground** |
+| **Servo 1 (Left Gate)** | `GPIO 21` | Must be powered by the Buck Converter's 5V Output |
+| **Servo 2 (Right Gate)**| `GPIO 22` | Must be powered by the Buck Converter's 5V Output |
+| **Ground (GND)** | `GND` | The ESP32, Buck Converter, and Servos **must share a common ground** |
 
-> **Power Constraints:** Servo motors draw too much current when they move. If they are powered directly from the ESP32's 5V pin, the board will crash and Bluetooth will disconnect. Always use an external power supply (like a 4x AA battery pack) for the servos.
+### Power Supply (18650 Battery, Buck Converter & Capacitor)
+> **Power Constraints:** Servo motors draw too much current when they move. If they are powered directly from the ESP32's 5V pin, the board will crash and Bluetooth will disconnect.
+
+To solve this, use an external power supply circuit:
+1. **18650 Battery in a Battery Holder:** Provides the main power source.
+2. **Buck Converter:** Connect the battery holder's output to the buck converter's input. Tune the buck converter to output **exactly 5V**.
+3. **2200uF Capacitor:** Attach this capacitor across the **output** of the buck converter (Positive to 5V, Negative to Ground). This acts as a reservoir to control the fluctuation of power and smooth out voltage drops when the servos start moving.
+4. **Wiring the Servos:** Connect the Servo VCC pins to the 5V output of the buck converter and their GND pins to the common ground.
 
 ---
 
@@ -31,25 +38,15 @@ Ensure your components are wired exactly as follows to prevent PWM timer conflic
 
 ---
 
-## 3️⃣ Launching the React Dashboard
+## 3️⃣ Accessing the React Dashboard via GitHub Pages
 
-Your beautiful control interface is built with Vite and React.
+Your beautiful control interface is built with Vite and React and is hosted on **GitHub Pages** for easy access from anywhere.
 
-1. Open a terminal (Command Prompt or PowerShell).
-2. Navigate to your project folder:
-   ```bash
-   cd Desktop\segs
-   ```
-3. Install dependencies (if you haven't already):
-   ```bash
-   npm install
-   ```
-4. Start the local server:
-   ```bash
-   npm run dev
-   ```
-5. Open your browser (Google Chrome or Edge) and go to `http://localhost:5173`. 
-*(Note: Web Bluetooth only works on Chrome, Edge, and Opera. It does not work on Firefox).*
+1. Open your compatible browser (Google Chrome, Edge, or Opera). 
+*(Note: Web Bluetooth requires browser support and does not work on Firefox or most iOS browsers. Android Chrome is fully supported).*
+2. Navigate to the live application URL: 
+   **`https://kurt-aldrin.github.io/WaterdetectorUI/`** *(Or your specific GitHub Pages link).*
+3. Ensure your device has **Bluetooth enabled**. If you are on a mobile device, make sure location services are turned on (required for Bluetooth scanning).
 
 ---
 
