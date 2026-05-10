@@ -33,7 +33,7 @@ To solve this, use an external power supply circuit:
 1. Open the Arduino IDE.
 2. Go to **Tools -> Manage Libraries** and ensure the `ESP32Servo` library by Kevin Harrington is installed.
 3. Open the `esp32_firmware/esp32_firmware.ino` file.
-4. Select your ESP32 board and COM Port.
+4. Go to **Tools -> Board** and select **"ESP32 Dev Module"**, then select your COM Port.
 5. Click **Upload**.
 
 ---
