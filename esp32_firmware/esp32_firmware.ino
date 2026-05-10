@@ -217,9 +217,9 @@ void loop() {
       float rawDistance = duration * 0.034 / 2;
       float distance = rawDistance + DISTANCE_OFFSET;
       
-      // REVERSED FOR DIRECT RULER TESTING:
-      // The currentLevel is now exactly equal to the distance from the sensor.
-      currentLevel = distance;
+      // Calculate true water level (from bottom of the tank up)
+      // distance is the distance from the sensor to the water surface
+      currentLevel = SENSOR_MOUNT_HEIGHT - distance;
       
       if (currentLevel < 0) currentLevel = 0;
 
@@ -235,7 +235,7 @@ void loop() {
     if (!manualTestActive) {
       if (currentLevel >= maxLevelThreshold && !gateOpen) {
         openGates();
-      } else if (currentLevel < maxLevelThreshold - 2.0 && gateOpen) {
+      } else if (currentLevel <= 15.0 && gateOpen) {
         closeGates();
       }
     }
