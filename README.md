@@ -45,7 +45,7 @@ Your beautiful control interface is built with Vite and React and is hosted on *
 1. Open your compatible browser (Google Chrome, Edge, or Opera). 
 *(Note: Web Bluetooth requires browser support and does not work on Firefox or most iOS browsers. Android Chrome is fully supported).*
 2. Navigate to the live application URL: 
-   **`https://kurt-aldrin.github.io/WaterdetectorUI/`** *(Or your specific GitHub Pages link).*
+   **`https://s2023102026-commits.github.io/WaterdetectorUI/`**
 3. Ensure your device has **Bluetooth enabled**. If you are on a mobile device, make sure location services are turned on (required for Bluetooth scanning).
 
 ---
